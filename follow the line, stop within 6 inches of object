@@ -1,0 +1,108 @@
+#include <PRIZM.h>      // Include the PRIZM library from Tetrix  
+PRIZM prizm;            // Instantiate a PRIZM object "prizm" so we can use its functions
+
+
+void setup(){
+prizm.PrizmBegin();   // initialize the PRIZM controller  
+}  
+
+void loop(){ 
+
+
+while (prizm.readSonicSensorIN(5)>5){
+if(prizm.readLineSensor(2)==1){ 
+right();
+}
+if(prizm.readLineSensor(2)==0){ 
+left();  
+}
+}
+
+if(prizm.readSonicSensorIN(5)<5){
+halt();
+}
+
+}
+void reset(int time){ 
+
+prizm.setServoPosition(1,0);  
+
+prizm.setServoSpeed(1,60);  
+
+delay(time); 
+
+} 
+
+  
+
+void forward(int time){ 
+
+prizm.setMotorSpeed(1,400);  
+
+prizm.setMotorSpeed(2,-400);  
+
+delay(time);  
+
+} 
+
+  
+
+void right(){ 
+
+prizm.setMotorSpeed(1,100);  
+
+prizm.setMotorSpeed(2,-400);   
+
+} 
+
+  
+
+void left(){ 
+
+prizm.setMotorSpeed(1,400);  
+
+prizm.setMotorSpeed(2,-100);  
+
+} 
+
+  
+
+void halt(){ 
+
+prizm.setMotorSpeed(1,0);  
+
+prizm.setMotorSpeed(2,0); 
+
+} 
+
+  
+
+void wave(int time){ 
+
+prizm.setServoPosition(1,180);  
+
+prizm.setServoSpeed(1,60); 
+
+delay(time); 
+
+} 
+
+  
+
+void flash(int time){ 
+
+prizm.setRedLED(1);  
+
+delay(time);  
+
+} 
+
+  
+
+void fini(int time){ 
+
+prizm.PrizmEnd(); 
+
+delay(time); 
+
+} 
