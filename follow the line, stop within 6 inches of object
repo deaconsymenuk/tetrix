@@ -9,21 +9,21 @@ prizm.PrizmBegin();   // initialize the PRIZM controller
 void loop(){ 
 
 
-while (prizm.readSonicSensorIN(5)>5){
-if(prizm.readLineSensor(2)==1){ 
+while (prizm.readSonicSensorIN(5)>5){      //run code below as long as theirs nothing in front of it
+if(prizm.readLineSensor(2)==1){            //turn right when sensor sees darkor, value of 1
 right();
 }
-if(prizm.readLineSensor(2)==0){ 
+if(prizm.readLineSensor(2)==0){            //turn left when sensor sees light, value of 0
 left();  
 }
 }
 
-if(prizm.readSonicSensorIN(5)<5){
+if(prizm.readSonicSensorIN(5)<5){          //when somethings close to sonic sensor stop untill its gone
 halt();
 }
 
 }
-void reset(int time){ 
+void reset(int time){                      //function for resetting servo
 
 prizm.setServoPosition(1,0);  
 
@@ -35,7 +35,7 @@ delay(time);
 
   
 
-void forward(int time){ 
+void forward(int time){                    //function for moving forward
 
 prizm.setMotorSpeed(1,400);  
 
@@ -47,7 +47,7 @@ delay(time);
 
   
 
-void right(){ 
+void right(){                              //function for turning right
 
 prizm.setMotorSpeed(1,100);  
 
@@ -57,7 +57,7 @@ prizm.setMotorSpeed(2,-400);
 
   
 
-void left(){ 
+void left(){                               //function for turning left
 
 prizm.setMotorSpeed(1,400);  
 
@@ -67,7 +67,7 @@ prizm.setMotorSpeed(2,-100);
 
   
 
-void halt(){ 
+void halt(){                              //function for stopping rotors
 
 prizm.setMotorSpeed(1,0);  
 
@@ -77,7 +77,7 @@ prizm.setMotorSpeed(2,0);
 
   
 
-void wave(int time){ 
+void wave(int time){                       //function for moving servo
 
 prizm.setServoPosition(1,180);  
 
@@ -89,7 +89,7 @@ delay(time);
 
   
 
-void flash(int time){ 
+void flash(int time){                      //turn red led on
 
 prizm.setRedLED(1);  
 
@@ -99,7 +99,7 @@ delay(time);
 
   
 
-void fini(int time){ 
+void fini(int time){                       //stop completely and turn off
 
 prizm.PrizmEnd(); 
 
