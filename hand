@@ -1,0 +1,62 @@
+#include <PRIZM.h>      // Include the PRIZM library from Tetrix  
+
+PRIZM prizm;            // Instantiate a PRIZM object "prizm" so we can use its functions  
+
+void setup() {          // run this code once
+    
+prizm.PrizmBegin();   // initialize the PRIZM controller  
+
+prizm.setServoPositions(-45,-45,-45,-45,-45,-45);
+delay(2000);
+  
+} 
+
+void loop() {  
+
+prizm.setServoPositions(75,75,0,75,75,0);
+delay(5000);
+}  
+void pinky(int time){ 
+
+prizm.setServoPosition(1,0);  
+
+prizm.setServoSpeed(1,60); 
+
+delay(time);
+} 
+
+void ring(int time){ 
+
+prizm.setServoPosition(2,0);  
+
+prizm.setServoSpeed(2,60); 
+
+delay(time); 
+}
+
+void middle(int time){ 
+
+prizm.setServoPosition(3,0);  
+
+prizm.setServoSpeed(3,60); 
+
+delay(time); 
+}
+
+void index(int time){ 
+
+prizm.setServoPosition(4,0);  
+
+prizm.setServoSpeed(4,60); 
+
+delay(time);
+} 
+
+void thumb(int time){ 
+
+prizm.setServoPosition(5,0);  
+
+prizm.setServoSpeed(5,60); 
+
+delay(time); 
+}  
