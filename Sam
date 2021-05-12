@@ -1,0 +1,81 @@
+#include <PRIZM.h>      // Include the PRIZM library from Tetrix  
+
+PRIZM prizm;            // Instantiate a PRIZM object "prizm" so we can use its functions  
+
+void setup() {          // run this code once
+
+prizm.PrizmBegin();   // initialize the PRIZM controller  
+  
+} 
+
+void loop() {  
+OpenClaw();                             //opens claw for package
+ClosedClaw();                           //closes claw on package
+ElbowUp();                              //lifts up the package
+TrackForward();                         //carrys package to track
+OpenClaw();                             //opens claw onto track
+if (prizm.readSonicSensorCM(2)<5){      //when the package goes under sonic sensor the motor will move the track
+  prizm.setMotorSpeed(1,-100);
+  delay(10000);}
+TrackBackward();                        //moves the track backwards so it can be ready to start again
+ElbowDown();
+if (prizm.readLineSensor(3)==1){        //Ends as soon as the package gets to the end
+  prizm.PrizmEnd();
+}}
+void ClosedClaw(){ 
+
+prizm.setServoPosition(1,147);  
+
+prizm.setServoSpeed(1,60); 
+
+delay(2000);
+} 
+
+void OpenClaw(){ 
+
+prizm.setServoPosition(1,200);  
+
+prizm.setServoSpeed(1,60);
+
+delay(200);
+}
+
+void ElbowDown(){ 
+
+prizm.setServoPosition(3,1);  
+
+prizm.setServoSpeed(3,60); 
+
+delay(200); 
+}
+
+void ElbowUp(){ 
+
+prizm.setServoPosition(3,-135);  
+
+prizm.setServoSpeed(3,60); 
+
+prizm.setServoPosition(1,147);  
+
+prizm.setServoSpeed(1,60); 
+
+delay(2000);
+} 
+
+void TrackForward(){ 
+
+prizm.setCRServoState(1,-100);  
+
+delay(2700);
+
+ prizm.setCRServoState(1,0);
+}  
+
+void TrackBackward(){ 
+
+prizm.setCRServoState(1,100);  
+
+delay(2700); 
+
+prizm.setCRServoState(1,0); 
+}  
