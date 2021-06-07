@@ -1,3 +1,5 @@
+#include <TELEOP.h>
+
  #include <PRIZM.h>    // TETRIX PRIZM Library
  #include <TELEOP.h>   // TETRIX TeleOp module Library
 
@@ -20,28 +22,33 @@ void loop() {
 
  if (ps4.Button(R2)==1);{                    // moves right motor forward
   prizm.setMotorSpeed(2,-720);
-   else prizm.setMotorSpeed(2,0);
+ }else{
+  prizm.setMotorSpeed(2,0);
   }
+ 
  if (ps4.Button(R1)==1);{                    // moves right motor backwards
   prizm.setMotorSpeed(1,720);
-   else prizm.setMotorSpeed(2,0);
+ }else{ 
+  prizm.setMotorSpeed(2,0);
   }
+ 
  if (ps4.Button(L2)==1);{                    // moves left motor forward
   prizm.setMotorSpeed(1,720);
-   else prizm.setMotorSpeed(1,0);
+ }else{
+   prizm.setMotorSpeed(1,0);
   }
+ 
  if (ps4.Button(L1)==1);{                    // moves left motor backward
   prizm.setMotorSpeed(1,-720);
-   else prizm.setMotorSpeed(1,0);
+ }else{
+   prizm.setMotorSpeed(1,0);
   }
- if (ps4.Button(CROSS)==1);{                 // closes front claw
+ 
+ if (ps4.Button(CROSS)==1){                 // closes front claw
   prizm.setServoPosition(1,67);
   prizm.setServoSpeed(1,60);
-   else prizm.setServoPosition(1,100);
+ }else{
+   prizm.setServoPosition(1,100);
   }
- if (ps4.Button(TRIANGLE)==1);{              // turns on Red LED and turns off Green LED
-  prizm.setRedLED(1);
-   else prizm.setGreenLED(1);
   }
-}
 }
